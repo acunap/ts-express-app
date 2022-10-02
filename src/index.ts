@@ -1,13 +1,4 @@
-import express, { Express, Request, Response } from 'express';
+import { Server } from './server';
 
-const app: Express = express();
-
-app.get('/status', (req: Request, res: Response) => {
-  res.status(200).json({ status: 'Ok' });
-});
-
-app.listen(3000, () => {
-  console.log('App started');
-});
-
-export { app };
+const server = new Server();
+server.start(3000);

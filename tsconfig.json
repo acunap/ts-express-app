@@ -6,7 +6,6 @@
     "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
     "strict": true,                                      /* Enable all strict type-checking options. */
     "skipLibCheck": true,                                /* Skip type checking all .d.ts files. */
-    "rootDir": "./src",                                  /* Specify the root folder within your source files. */
     "outDir": "./dist",                                 /* Specify an output folder for all emitted files. */
 
     /* Projects */
@@ -41,6 +40,7 @@
     // "moduleSuffixes": [],                             /* List of file name suffixes to search when resolving a module. */
     // "resolveJsonModule": true,                        /* Enable importing .json files. */
     // "noResolve": true,                                /* Disallow 'import's, 'require's or '<reference>'s from expanding the number of files TypeScript should add to a project. */
+    // "rootDir": "./src",                               /* Specify the root folder within your source files. */
 
     /* JavaScript Support */
     // "allowJs": true,                                  /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */

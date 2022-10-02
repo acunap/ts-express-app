@@ -21,7 +21,7 @@ Then('the response should be:', async (response) => {
   assert.deepStrictEqual(_response.body, expectedResponse);
 });
 
-BeforeAll(() => {
+BeforeAll(async () => {
   _server = new Server();
-  _server.start(3001);
+  await _server.start(3001);
 });

@@ -1,0 +1,5 @@
+services:
+  api:
+    container_name: ts-express-app
+    build:
+      context: .

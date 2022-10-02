@@ -1,7 +1,8 @@
 services:
   api:
+    container_name: ts-express-app-dev
     build:
-      target: development-build-and-run-stage
+      target: development-run-stage
     ports:
       - 3000:3000
     environment:

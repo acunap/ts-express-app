@@ -6,3 +6,9 @@ stop-local:
 
 down-local:
 	docker-compose down
+
+run-tests:
+	docker-compose -f docker-compose.yml -f docker-compose.test.yml up
+
+down-tests:
+	docker-compose -f docker-compose.yml -f docker-compose.test.yml down

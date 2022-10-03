@@ -26,7 +26,7 @@ class ConvictConfig implements Config {
   }
 
   getEnv(): Environment {
-    return this.convictConfig.get('env') as Environment;
+    return this.convictConfig.get('env');
   }
 
   getPort(): number {
@@ -34,7 +34,7 @@ class ConvictConfig implements Config {
   }
 
   isEnvInDevMode(): boolean {
-    return this.getEnv() == Environment.DEVELOPMENT;
+    return this.getEnv() === Environment.DEVELOPMENT;
   }
 }
 

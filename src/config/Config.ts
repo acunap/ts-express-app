@@ -1,7 +1,7 @@
 interface Config {
-  getEnv(): Environment;
-  getPort(): number;
-  isEnvInDevMode(): boolean;
+  getEnv: () => Environment;
+  getPort: () => number;
+  isEnvInDevMode: () => boolean;
 }
 
 interface ConfigProps {

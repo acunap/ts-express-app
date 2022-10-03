@@ -12,7 +12,8 @@
     },
     "rules": {
         "prettier/prettier": "error",
-        "import/order": "error"
+        "import/order": "error",
+        "@typescript-eslint/restrict-template-expressions": 0
     },
     "ignorePatterns": [".eslintrc.js", ".prettierrc.js", "cucumber.js", "jest.config.js", "dist/*"]
 }

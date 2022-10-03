@@ -3,3 +3,5 @@ services:
     container_name: ts-express-app-tests
     build:
       target: tests-run-stage
+    environment:
+      APP_PORT: 3000

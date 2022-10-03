@@ -23,5 +23,5 @@ Then('the response should be:', async (response) => {
 
 BeforeAll(async () => {
   _server = new Server();
-  await _server.start(3001);
+  await _server.start();
 });

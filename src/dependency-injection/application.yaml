@@ -1,4 +1,7 @@
 services:
+  Config.ConfigService:
+    class: ../config/ConvictConfig
+
   Controllers.StatusGetController:
     class: ../controllers/status/StatusGetController
     arguments: []

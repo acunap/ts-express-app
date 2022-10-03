@@ -1,7 +1,7 @@
 import express, { Express } from 'express';
 import { createStatusRouter } from './routes/status';
 import { NodeDependencyInjectionDIContainer } from './dependency-injection/NodeDependencyInjectionDIContainer';
-import { DIContainer } from './dependency-injection/DIContainer';
+import { DI_TYPES, DIContainer } from './dependency-injection/DIContainer';
 import { Config } from './config/Config';
 
 export class Server {
@@ -11,13 +11,12 @@ export class Server {
     this.app = express();
   }
 
-  async start(): Promise<void> {
+  start(): void {
     const container = new NodeDependencyInjectionDIContainer();
-    await container.boot();
 
     this.initRoutes(container);
 
-    const configService: Config = container.getService('Config.ConfigService');
+    const configService: Config = container.getService(DI_TYPES.Config);
     const port = configService.getPort();
     const env = configService.getEnv();
 

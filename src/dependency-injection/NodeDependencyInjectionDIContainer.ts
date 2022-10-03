@@ -1,16 +1,19 @@
-import { ContainerBuilder, YamlFileLoader } from 'node-dependency-injection';
-import { DIContainer } from './DIContainer';
+import { ContainerBuilder } from 'node-dependency-injection';
+import { DI_TYPES, DIContainer } from './DIContainer';
+import ConvictConfig from '../config/ConvictConfig';
+import { StatusGetController } from '../controllers/status/StatusGetController';
 
 export class NodeDependencyInjectionDIContainer implements DIContainer {
-  private readonly container = new ContainerBuilder();
+  private readonly container: ContainerBuilder;
 
-  async boot() {
-    const loader = new YamlFileLoader(this.container);
-    const env = process.env.NODE_ENV ?? 'development';
-    await loader.load(`${__dirname}/application_${env}.yaml`);
+  constructor() {
+    this.container = new ContainerBuilder();
+
+    this.container.register(DI_TYPES.Config, ConvictConfig);
+    this.container.register(DI_TYPES.StatusGetController, StatusGetController);
   }
 
-  getService(token: string): any {
+  getService(token: DI_TYPES): any {
     return this.container.get(token);
   }
 }

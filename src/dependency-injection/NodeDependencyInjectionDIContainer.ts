@@ -11,9 +11,7 @@ export class NodeDependencyInjectionDIContainer implements DIContainer {
     this.container = new ContainerBuilder();
 
     this.container.register(DI_TYPES.Config, ConvictConfig);
-    this.container
-      .register(DI_TYPES.Logger, PinoLogger)
-      .addArgument(new Reference(DI_TYPES.Config));
+    this.container.register(DI_TYPES.Logger, PinoLogger).addArgument(new Reference(DI_TYPES.Config));
 
     this.container.register(DI_TYPES.StatusGetController, StatusGetController);
   }

@@ -38,20 +38,12 @@ class PinoLogger implements Logger {
     return pinoHttp({
       logger: this.logger,
       genReqId: (_req: IncomingMessage) => uuid(),
-      customLogLevel: (
-        _req: IncomingMessage,
-        res: ServerResponse,
-        _error: Error,
-      ) => {
+      customLogLevel: (_req: IncomingMessage, res: ServerResponse, _error: Error) => {
         return res.err === null ? 'error' : 'info';
       },
-      customSuccessMessage: (req: IncomingMessage, res: ServerResponse) =>
-        `[${req.method}] ${req.url} - ${res.statusCode} ${res.statusMessage}`,
-      customErrorMessage: (
-        req: IncomingMessage,
-        res: ServerResponse,
-        error: Error,
-      ) => `[${req.method}] ${req.url} - ${res.statusCode} ${error.message}`,
+      customSuccessMessage: (req: IncomingMessage, res: ServerResponse) => `[${req.method}] ${req.url} - ${res.statusCode} ${res.statusMessage}`,
+      customErrorMessage: (req: IncomingMessage, res: ServerResponse, error: Error) =>
+        `[${req.method}] ${req.url} - ${res.statusCode} ${error.message}`,
     });
   }
 }

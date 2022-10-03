@@ -8,11 +8,7 @@ class ConvictConfig implements Config {
     this.convictConfig = convict({
       env: {
         doc: 'The application environment.',
-        format: [
-          Environment.PRODUCTION,
-          Environment.DEVELOPMENT,
-          Environment.TEST,
-        ],
+        format: [Environment.PRODUCTION, Environment.DEVELOPMENT, Environment.TEST],
         default: Environment.DEVELOPMENT as Environment,
         env: 'NODE_ENV',
       },

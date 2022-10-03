@@ -1,9 +1,9 @@
 import express, { Express } from 'express';
-import { createStatusRouter } from './routes/status';
-import { NodeDependencyInjectionDIContainer } from './dependency-injection/NodeDependencyInjectionDIContainer';
-import { DI_TYPES, DIContainer } from './dependency-injection/DIContainer';
-import { Config } from './config/Config';
-import Logger from './logger/Logger';
+import { createStatusRouter } from '@routes/status';
+import { NodeDependencyInjectionDIContainer } from '@dependency-injection/NodeDependencyInjectionDIContainer';
+import { DI_TYPES, DIContainer } from '@dependency-injection/DIContainer';
+import { Config } from '@config/Config';
+import Logger from '@logger/Logger';
 
 export class Server {
   readonly app: Express;

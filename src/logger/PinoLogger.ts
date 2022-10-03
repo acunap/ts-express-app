@@ -3,8 +3,8 @@ import pino from 'pino';
 import pinoHttp from 'pino-http';
 import { Handler } from 'express';
 import { v4 as uuid } from 'uuid';
-import { Config, Environment } from '../config/Config';
-import Logger from './Logger';
+import { Config, Environment } from '@config/Config';
+import Logger from '@logger/Logger';
 
 class PinoLogger implements Logger {
   private readonly logger;

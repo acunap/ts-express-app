@@ -1,4 +1,4 @@
-import { ContainerBuilder } from 'node-dependency-injection';
+import { ContainerBuilder, Reference } from 'node-dependency-injection';
 import ConvictConfig from '../config/ConvictConfig';
 import { StatusGetController } from '../controllers/status/StatusGetController';
 import PinoLogger from '../logger/PinoLogger';
@@ -13,7 +13,7 @@ export class NodeDependencyInjectionDIContainer implements DIContainer {
     this.container.register(DI_TYPES.Config, ConvictConfig);
     this.container
       .register(DI_TYPES.Logger, PinoLogger)
-      .addArgument(this.container.get(DI_TYPES.Config));
+      .addArgument(new Reference(DI_TYPES.Config));
 
     this.container.register(DI_TYPES.StatusGetController, StatusGetController);
   }

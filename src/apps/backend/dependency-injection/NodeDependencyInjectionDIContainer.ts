@@ -1,8 +1,8 @@
 import { ContainerBuilder, Reference } from 'node-dependency-injection';
-import { StatusGetController } from '@controllers/status/StatusGetController';
-import PinoLogger from '@logger/PinoLogger';
-import { DI_TYPES, DIContainer } from '@dependency-injection/DIContainer';
-import ConvictConfig from '@config/ConvictConfig';
+import { StatusGetController } from '@backend/controllers/status/StatusGetController';
+import PinoLogger from '@backend/logger/PinoLogger';
+import { DI_TYPES, DIContainer } from '@backend/dependency-injection/DIContainer';
+import ConvictConfig from '@backend/config/ConvictConfig';
 
 export class NodeDependencyInjectionDIContainer implements DIContainer {
   private readonly container: ContainerBuilder;

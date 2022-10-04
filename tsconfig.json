@@ -9,13 +9,7 @@
     "outDir": "./dist",                                  /* Specify an output folder for all emitted files. */
     "baseUrl": ".",                                      /* Specify the base directory to resolve non-relative module names. */
     "paths": {                                           /* Specify a set of entries that re-map imports to additional lookup locations. */
-      "@src/*": ["src/*"],
-      "@config/*": ["src/config/*"],
-      "@dependency-injection/*": ["src/dependency-injection/*"],
-      "@logger/*": ["src/logger/*"],
-      "@controllers/*": ["src/controllers/*"],
-      "@routes/*": ["src/routes/*"],
-      "@tests/*": ["testes/*"]
+      "@backend/*": ["src/apps/backend/*"],
     },
     /* Projects */
     // "incremental": true,                              /* Save .tsbuildinfo files to allow for incremental compilation of projects. */

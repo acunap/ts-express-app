@@ -12,12 +12,10 @@ CMD ["npm", "run", "dev"]
 
 FROM common-build-stage as e2e-tests-run-stage
 
-ENV NODE_ENV test
 CMD ["npm", "run", "test:features"]
 
 FROM common-build-stage as e2e-tests-run-and-serve-stage
 
-ENV NODE_ENV test
 CMD ["npm", "run", "test:features:report:serve"]
 
 FROM common-build-stage as production-build-stage

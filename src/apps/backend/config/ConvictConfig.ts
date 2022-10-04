@@ -1,5 +1,5 @@
 import convict from 'convict';
-import { Config, ConfigProps, Environment } from '@config/Config';
+import { Config, ConfigProps, Environment } from '@backend/config/Config';
 
 class ConvictConfig implements Config {
   private readonly convictConfig: convict.Config<ConfigProps>;

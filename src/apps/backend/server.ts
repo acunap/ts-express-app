@@ -1,10 +1,10 @@
-import express, { Express } from 'express';
-import { createStatusRouter } from '@routes/status';
-import { NodeDependencyInjectionDIContainer } from '@dependency-injection/NodeDependencyInjectionDIContainer';
-import { DI_TYPES, DIContainer } from '@dependency-injection/DIContainer';
-import { Config } from '@config/Config';
-import Logger from '@logger/Logger';
 import * as http from 'http';
+import express, { Express } from 'express';
+import { createStatusRouter } from '@backend/routes/status';
+import { NodeDependencyInjectionDIContainer } from '@backend/dependency-injection/NodeDependencyInjectionDIContainer';
+import { DI_TYPES, DIContainer } from '@backend/dependency-injection/DIContainer';
+import { Config } from '@backend/config/Config';
+import Logger from '@backend/logger/Logger';
 
 export class Server {
   readonly app: Express;
@@ -32,7 +32,7 @@ export class Server {
   }
 
   stop(): void {
-    if (this.server) {
+    if (this.server != null) {
       this.server.close();
     }
   }

@@ -1,7 +1,8 @@
 services:
-  api:
-    container_name: ts-express-app-tests
+  api-e2e-tests:
+    container_name: ts-express-app-e2e-tests
     build:
-      target: tests-run-stage
+      context: .
+      target: e2e-tests-run-stage
     environment:
       APP_PORT: 3000

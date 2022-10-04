@@ -1,18 +1,19 @@
 FROM node:18-alpine as common-build-stage
 
 WORKDIR /app
-COPY . .
+COPY package*.json ./
 RUN npm ci
+COPY . .
 
 FROM common-build-stage as development-run-stage
 
 ENV NODE_ENV development
 CMD ["npm", "run", "dev"]
 
-FROM common-build-stage as tests-run-stage
+FROM common-build-stage as e2e-tests-run-stage
 
 ENV NODE_ENV development
-CMD ["npm", "run", "test"]
+CMD ["npm", "run", "test:features"]
 
 FROM common-build-stage as production-build-stage
 

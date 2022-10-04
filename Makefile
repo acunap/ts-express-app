@@ -13,5 +13,8 @@ run-tests:
 run-e2e-tests:
 	docker-compose -f docker-compose.test.yml up api-e2e-tests --build
 
+run-serve-e2e-tests:
+	docker-compose -f docker-compose.test.yml up api-e2e-tests-serve --build
+
 down-tests:
 	docker-compose -f docker-compose.test.yml down --rmi local

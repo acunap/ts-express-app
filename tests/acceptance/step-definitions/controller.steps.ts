@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { BeforeAll, Given, Then } from '@cucumber/cucumber';
+import { AfterAll, BeforeAll, Given, Then } from '@cucumber/cucumber';
 import request from 'supertest';
 import { Server } from '@src/server';
 
@@ -15,7 +15,7 @@ Then('the response status code should be {int}', async (status: number) => {
   await _request.expect(status);
 });
 
-Then('the response should be:', async (response) => {
+Then('the response body should be:', async (response) => {
   const expectedResponse = JSON.parse(response);
   _response = await _request;
   assert.deepStrictEqual(_response.body, expectedResponse);
@@ -24,4 +24,8 @@ Then('the response should be:', async (response) => {
 BeforeAll(() => {
   _server = new Server();
   _server.start();
+});
+
+AfterAll(() => {
+  _server.stop();
 });

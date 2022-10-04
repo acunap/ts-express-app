@@ -6,3 +6,13 @@ services:
       target: e2e-tests-run-stage
     environment:
       APP_PORT: 3000
+
+  api-e2e-tests-serve:
+    container_name: ts-express-app-e2e-tests-serve
+    build:
+      context: .
+      target: e2e-tests-run-and-serve-stage
+    environment:
+      APP_PORT: 3000
+    ports:
+      - 8080:8080

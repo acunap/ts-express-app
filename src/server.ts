@@ -4,9 +4,11 @@ import { NodeDependencyInjectionDIContainer } from '@dependency-injection/NodeDe
 import { DI_TYPES, DIContainer } from '@dependency-injection/DIContainer';
 import { Config } from '@config/Config';
 import Logger from '@logger/Logger';
+import * as http from 'http';
 
 export class Server {
   readonly app: Express;
+  private server?: http.Server;
 
   constructor() {
     this.app = express();
@@ -24,9 +26,15 @@ export class Server {
 
     this.initRoutes(container);
 
-    this.app.listen(port, () => {
+    this.server = this.app.listen(port, () => {
       logger.info(`Server started on ${port} port - ${env} mode`);
     });
+  }
+
+  stop(): void {
+    if (this.server) {
+      this.server.close();
+    }
   }
 
   private initRoutes(container: DIContainer): void {

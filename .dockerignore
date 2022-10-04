@@ -3,3 +3,4 @@
 .dockerignore
 Dockerfile
 node_modules
+cucumber-report.html

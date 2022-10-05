@@ -14,8 +14,17 @@ Given('I send a GET request to {string}', (route: string) => {
   _request = request(_server.app).get(route);
 });
 
+Given('I send a put request to {string} with body:', (route: string, body: string) => {
+  _request = request(_server.app).put(route).send(body);
+});
+
 Then('the response status code should be {int}', async (status: number) => {
   await _request.expect(status);
+});
+
+Then('the response body should be empty', async () => {
+  _response = await _request;
+  assert.deepStrictEqual(_response.body, {});
 });
 
 Then('the response body should be:', async (response) => {

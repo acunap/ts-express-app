@@ -5,7 +5,7 @@ import { Server } from '@backend/server';
 import { NodeDependencyInjectionDIContainer } from '@backend/dependency-injection/NodeDependencyInjectionDIContainer';
 import { DI_TYPES } from '@backend/dependency-injection/DIContainer';
 
-let _container = new NodeDependencyInjectionDIContainer();
+const _container = new NodeDependencyInjectionDIContainer();
 let _server: Server;
 let _request: request.Test;
 let _response: request.Response;

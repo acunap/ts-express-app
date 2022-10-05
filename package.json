@@ -10,10 +10,10 @@
     "dev": "nodemon",
     "lint": "eslint ./src ./tests --ext .ts",
     "lint:fix": "npm run lint -- --fix",
-    "test": "npm run test:features",
-    "test:features": "NODE_ENV=test cucumber-js -p default",
-    "test:features:report": "NODE_ENV=test cucumber-js -p default -f html:cucumber-report.html",
-    "test:features:report:serve": "npm run test:features:report; mkdir reports; mv cucumber-report.html reports/; http-server ./reports -o cucumber-report.html | grep Open"
+    "test": "npm run test:e2e",
+    "test:e2e": "NODE_ENV=test cucumber-js -p default",
+    "test:e2e:report": "NODE_ENV=test cucumber-js -p default -f html:cucumber-report.html",
+    "test:e2e:report:serve": "npm run test:e2e:report; mkdir reports; mv cucumber-report.html reports/; http-server ./reports -o cucumber-report.html | grep Open"
   },
   "keywords": [],
   "author": "",

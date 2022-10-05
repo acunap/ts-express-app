@@ -1,33 +1,35 @@
 import * as http from 'http';
 import express, { Express } from 'express';
-import { createStatusRouter } from '@backend/routes/status';
-import { NodeDependencyInjectionDIContainer } from '@backend/dependency-injection/NodeDependencyInjectionDIContainer';
-import { DI_TYPES, DIContainer } from '@backend/dependency-injection/DIContainer';
 import { Config } from '@backend/config/Config';
 import Logger from '@backend/logger/Logger';
+import { Route } from '@backend/routes/Route';
 
 export class Server {
   readonly app: Express;
+  private readonly config: Config;
+  private readonly logger: Logger;
+  private readonly routes: Route[];
   private server?: http.Server;
 
-  constructor() {
+  constructor(config: Config, logger: Logger, ...routes: Route[]) {
     this.app = express();
+    this.config = config;
+    this.logger = logger;
+    this.routes = routes;
   }
 
   start(): void {
-    const container = new NodeDependencyInjectionDIContainer();
+    const port = this.config.getPort();
+    const env = this.config.getEnv();
 
-    const configService: Config = container.getService(DI_TYPES.Config);
-    const port = configService.getPort();
-    const env = configService.getEnv();
+    this.app.use(this.logger.getRequestsMiddleware());
 
-    const logger: Logger = container.getService(DI_TYPES.Logger);
-    this.app.use(logger.getRequestsMiddleware());
-
-    this.initRoutes(container);
+    this.routes.forEach((route) => {
+      this.app.use(route.getRouter());
+    });
 
     this.server = this.app.listen(port, () => {
-      logger.info(`Server started on ${port} port - ${env} mode`);
+      this.logger.info(`Server started on ${port} port - ${env} mode`);
     });
   }
 
@@ -35,9 +37,5 @@ export class Server {
     if (this.server != null) {
       this.server.close();
     }
-  }
-
-  private initRoutes(container: DIContainer): void {
-    this.app.use(createStatusRouter(container));
   }
 }

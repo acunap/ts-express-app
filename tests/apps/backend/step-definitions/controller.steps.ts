@@ -2,7 +2,10 @@ import assert from 'assert';
 import { AfterAll, BeforeAll, Given, Then } from '@cucumber/cucumber';
 import request from 'supertest';
 import { Server } from '@backend/server';
+import { NodeDependencyInjectionDIContainer } from '@backend/dependency-injection/NodeDependencyInjectionDIContainer';
+import { DI_TYPES } from '@backend/dependency-injection/DIContainer';
 
+let _container = new NodeDependencyInjectionDIContainer();
 let _server: Server;
 let _request: request.Test;
 let _response: request.Response;
@@ -22,7 +25,7 @@ Then('the response body should be:', async (response) => {
 });
 
 BeforeAll(() => {
-  _server = new Server();
+  _server = _container.getService(DI_TYPES.Server);
   _server.start();
 });
 

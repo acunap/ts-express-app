@@ -13,8 +13,10 @@
     "rules": {
         "prettier/prettier": "error",
         "import/order": "error",
+        "@typescript-eslint/no-unused-vars": ["error", { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }],
         "@typescript-eslint/restrict-template-expressions": 0,
-        "import/no-named-as-default": 0
+        "import/no-named-as-default": 0,
+        "@typescript-eslint/no-extraneous-class": 0
     },
     "ignorePatterns": [".eslintrc.js", ".prettierrc.js", "cucumber.js", "jest.config.js", "dist/*"],
     "settings": {

@@ -13,4 +13,5 @@ export enum DI_TYPES {
   TodosPutRoute = 'Routes.TodosPutRoute',
   TodosPutController = 'Controllers.TodosPutController',
   TodoCreator = 'UseCases.TodoCreator',
+  TodoRepository = 'Repositories.TodoRepository',
 }

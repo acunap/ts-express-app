@@ -1,5 +1,5 @@
 import * as http from 'http';
-import express, { Express } from 'express';
+import express, { Express, json } from 'express';
 import { Config } from '@backend/config/Config';
 import Logger from '@backend/logger/Logger';
 import { Route } from '@backend/routes/Route';
@@ -22,6 +22,7 @@ export class Server {
     const port = this.config.getPort();
     const env = this.config.getEnv();
 
+    this.app.use(json());
     this.app.use(this.logger.getRequestsMiddleware());
 
     this.routes.forEach((route) => {

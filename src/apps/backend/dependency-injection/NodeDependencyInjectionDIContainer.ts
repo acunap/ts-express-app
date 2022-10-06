@@ -9,6 +9,7 @@ import { StatusGetController } from '@backend/controllers/status/StatusGetContro
 import { TodosRoutes } from '@backend/routes/todos/TodosRoutes';
 import { TodosPutRoute } from '@backend/routes/todos/TodosPutRoute';
 import { TodosPutController } from '@backend/controllers/todos/TodosPutController';
+import { TodosCreator } from '@todos/application/TodosCreator';
 
 export class NodeDependencyInjectionDIContainer implements DIContainer {
   private readonly container: ContainerBuilder;
@@ -32,7 +33,8 @@ export class NodeDependencyInjectionDIContainer implements DIContainer {
 
     this.container.register(DI_TYPES.TodosRoute, TodosRoutes).addArgument(new Reference(DI_TYPES.TodosPutRoute));
     this.container.register(DI_TYPES.TodosPutRoute, TodosPutRoute).addArgument(new Reference(DI_TYPES.TodosPutController));
-    this.container.register(DI_TYPES.TodosPutController, TodosPutController);
+    this.container.register(DI_TYPES.TodosPutController, TodosPutController).addArgument(new Reference(DI_TYPES.TodoCreator));
+    this.container.register(DI_TYPES.TodoCreator, TodosCreator);
   }
 
   getService(token: DI_TYPES): any {

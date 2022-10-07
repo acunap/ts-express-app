@@ -35,7 +35,7 @@ export class NodeDependencyInjectionDIContainer implements DIContainer {
     this.container.register(DI_TYPES.TodosRoute, TodosRoutes).addArgument(new Reference(DI_TYPES.TodosPutRoute));
     this.container.register(DI_TYPES.TodosPutRoute, TodosPutRoute).addArgument(new Reference(DI_TYPES.TodosPutController));
     this.container.register(DI_TYPES.TodosPutController, TodosPutController).addArgument(new Reference(DI_TYPES.TodoCreator));
-    this.container.register(DI_TYPES.TodoCreator, TodosCreator);
+    this.container.register(DI_TYPES.TodoCreator, TodosCreator).addArgument(new Reference(DI_TYPES.TodoRepository));
     this.container.register(DI_TYPES.TodoRepository, InMemoryTodoRepository).shared = false;
   }
 

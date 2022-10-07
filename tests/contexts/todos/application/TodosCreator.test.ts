@@ -8,7 +8,7 @@ describe('TodoCreator', () => {
     const creator = new TodosCreator(repository);
     const todo = TodoMother.create();
 
-    creator.create(todo.id.value, todo.title.value, todo.description.value);
+    creator.create(todo);
 
     repository.assertHasBeenCalledWith(todo);
   });

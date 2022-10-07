@@ -15,7 +15,7 @@ Given('I send a GET request to {string}', (route: string) => {
 });
 
 Given('I send a put request to {string} with body:', (route: string, body: string) => {
-  _request = request(_server.app).put(route).send(body);
+  _request = request(_server.app).put(route).send(JSON.parse(body));
 });
 
 Then('the response status code should be {int}', async (status: number) => {

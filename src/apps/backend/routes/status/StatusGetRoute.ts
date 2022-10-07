@@ -6,6 +6,6 @@ export class StatusGetRoute implements Route {
   constructor(private readonly controller: StatusGetController) {}
 
   getRouter(): Router {
-    return Router().get('/', this.controller.run);
+    return Router().get('/', this.controller.run.bind(this.controller));
   }
 }

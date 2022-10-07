@@ -6,6 +6,6 @@ export class TodosPutRoute implements Route {
   constructor(private readonly controller: TodosPutController) {}
 
   getRouter(): Router {
-    return Router().put('/:id', this.controller.run);
+    return Router().put('/:id', this.controller.run.bind(this.controller));
   }
 }

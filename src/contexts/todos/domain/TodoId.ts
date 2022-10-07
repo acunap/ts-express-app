@@ -1,4 +1,5 @@
 import { validate } from 'uuid';
+import { InvalidArgumentError } from '../../shared/errors/InvalidArgumentError';
 
 export class TodoId {
   constructor(readonly value: string) {
@@ -7,7 +8,7 @@ export class TodoId {
 
   private ensureIdIsValidUuid(): void {
     if (!validate(this.value)) {
-      throw new Error('Id must be a valid UUID.');
+      throw new InvalidArgumentError('Id must be a valid UUID.');
     }
   }
 }

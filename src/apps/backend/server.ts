@@ -1,5 +1,7 @@
 import * as http from 'http';
-import express, { Express, json } from 'express';
+import express, { Express, json, NextFunction, Request, Response } from 'express';
+import { ResponseError } from '../../contexts/shared/errors/ResponseError';
+import { NotFoundError } from '../../contexts/shared/errors/NotFoundError';
 import { Config } from '@backend/config/Config';
 import Logger from '@backend/logger/Logger';
 import { Route } from '@backend/routes/Route';
@@ -27,6 +29,15 @@ export class Server {
 
     this.routes.forEach((route) => {
       this.app.use(route.getRouter());
+    });
+
+    this.app.use((req: Request, _res: Response) => {
+      throw new NotFoundError(`${req.url} not found`);
+    });
+
+    this.app.use((err: ResponseError, req: Request, res: Response, _next: NextFunction) => {
+      res.err = err;
+      return res.status(err.status).json({ err: err.message });
     });
 
     this.server = this.app.listen(port, () => {

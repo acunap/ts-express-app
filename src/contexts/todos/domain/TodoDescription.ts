@@ -1,3 +1,5 @@
+import { InvalidArgumentError } from '../../shared/errors/InvalidArgumentError';
+
 export class TodoDescription {
   constructor(readonly value: string) {
     this.ensureDescriptionIsNotEmpty();
@@ -5,7 +7,7 @@ export class TodoDescription {
 
   private ensureDescriptionIsNotEmpty(): void {
     if (this.value.length < 1) {
-      throw new Error('Description must be filled.');
+      throw new InvalidArgumentError('Description must be filled.');
     }
   }
 }

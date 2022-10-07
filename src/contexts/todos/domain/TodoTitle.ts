@@ -1,3 +1,5 @@
+import { InvalidArgumentError } from '../../shared/errors/InvalidArgumentError';
+
 export class TodoTitle {
   constructor(readonly value: string) {
     this.ensureTitleIsNotEmpty();
@@ -5,7 +7,7 @@ export class TodoTitle {
 
   private ensureTitleIsNotEmpty(): void {
     if (this.value.length < 1) {
-      throw new Error('Title must be filled.');
+      throw new InvalidArgumentError('Title must be filled.');
     }
   }
 }

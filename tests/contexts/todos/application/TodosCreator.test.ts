@@ -6,7 +6,7 @@ describe('TodoCreator', () => {
   it('should use repository to save the new Todo', () => {
     const repository = new MockTodoRepository();
     const creator = new TodosCreator(repository);
-    const todo = TodoMother.random();
+    const todo = TodoMother.create();
 
     creator.create(todo.id.value, todo.title.value, todo.description.value);
 

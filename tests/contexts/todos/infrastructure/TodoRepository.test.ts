@@ -7,7 +7,7 @@ import { Todo } from '@todos/domain/Todo';
 describe('TodoRepository', () => {
   it('should save a todo', () => {
     const repository: TodoRepository = container.getService(DI_TYPES.TodoRepository);
-    const todo = TodoMother.random();
+    const todo = TodoMother.create();
 
     repository.save(todo);
 
@@ -19,7 +19,7 @@ describe('TodoRepository', () => {
 
   it('should return all todos persisted', () => {
     const repository: TodoRepository = container.getService(DI_TYPES.TodoRepository);
-    const todos = [TodoMother.random(), TodoMother.random(), TodoMother.random()];
+    const todos = [TodoMother.create(), TodoMother.create(), TodoMother.create()];
 
     todos.forEach((todo) => repository.save(todo));
 

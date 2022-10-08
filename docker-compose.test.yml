@@ -1,4 +1,20 @@
 services:
+  api-unit-tests:
+    container_name: ts-express-app-unit-tests
+    build:
+      context: .
+      target: unit-tests-run-stage
+    environment:
+      APP_PORT: 3000
+      DATABASE_HOST: database
+      DATABASE_PORT: 5432
+      DATABASE_USER: test.json-user
+      DATABASE_PASSWORD: test.json-user
+      DATABASE_DB: test.json-ts-app
+    depends_on:
+      database-migrations:
+        condition: service_completed_successfully
+
   api-e2e-tests:
     container_name: ts-express-app-e2e-tests
     build:
@@ -6,6 +22,14 @@ services:
       target: e2e-tests-run-stage
     environment:
       APP_PORT: 3000
+      DATABASE_HOST: database
+      DATABASE_PORT: 5432
+      DATABASE_USER: test.json-user
+      DATABASE_PASSWORD: test.json-user
+      DATABASE_DB: test.json-ts-app
+    depends_on:
+      database-migrations:
+        condition: service_completed_successfully
 
   api-e2e-tests-serve:
     container_name: ts-express-app-e2e-tests-serve
@@ -14,5 +38,36 @@ services:
       target: e2e-tests-run-and-serve-stage
     environment:
       APP_PORT: 3000
+      DATABASE_HOST: database
+      DATABASE_PORT: 5432
+      DATABASE_USER: test.json-user
+      DATABASE_PASSWORD: test.json-user
+      DATABASE_DB: test.json-ts-app
     ports:
       - 8080:8080
+    depends_on:
+      database-migrations:
+        condition: service_completed_successfully
+
+  database-migrations:
+    container_name: ts-express-app-migrations
+    build:
+      target: apply-migrations-stage
+    environment:
+      APP_PORT: 3000
+      DATABASE_HOST: database
+      DATABASE_PORT: 5432
+      DATABASE_USER: test.json-user
+      DATABASE_PASSWORD: test.json-user
+      DATABASE_DB: test.json-ts-app
+    depends_on:
+      - database
+
+  database:
+    container_name: ts-express-app-database-tests
+    environment:
+      POSTGRES_DB: test.json-ts-app
+      POSTGRES_USER: test.json-user
+      POSTGRES_PASSWORD: test.json-user
+    ports:
+      - 5432:5432

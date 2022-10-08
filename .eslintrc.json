@@ -18,7 +18,7 @@
         "import/no-named-as-default": 0,
         "@typescript-eslint/no-extraneous-class": 0
     },
-    "ignorePatterns": [".eslintrc.js", ".prettierrc.js", "cucumber.js", "jest.config.js", "dist/*"],
+    "ignorePatterns": [".eslintrc.js", ".prettierrc.js", "cucumber.js", "jest.config.js", "dist/*", "src/contexts/shared/infrastructure/typeorm/migrations/*"],
     "settings": {
         "import/parsers": {
             "@typescript-eslint/parser": [".ts", ".tsx"]

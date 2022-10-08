@@ -10,7 +10,7 @@ import { TodosRoutes } from '@backend/routes/todos/TodosRoutes';
 import { TodosPutRoute } from '@backend/routes/todos/TodosPutRoute';
 import { TodosPutController } from '@backend/controllers/todos/TodosPutController';
 import { TodosCreator } from '@todos/application/TodosCreator';
-import { InMemoryTodoRepository } from '@todos/infrastructure/InMemoryTodoRepository';
+import { TypeOrmTodoRepository } from '@todos/infrastructure/persistence/TypeOrmTodoRepository';
 
 export class NodeDependencyInjectionDIContainer implements DIContainer {
   private readonly container: ContainerBuilder;
@@ -36,7 +36,7 @@ export class NodeDependencyInjectionDIContainer implements DIContainer {
     this.container.register(DI_TYPES.TodosPutRoute, TodosPutRoute).addArgument(new Reference(DI_TYPES.TodosPutController));
     this.container.register(DI_TYPES.TodosPutController, TodosPutController).addArgument(new Reference(DI_TYPES.TodoCreator));
     this.container.register(DI_TYPES.TodoCreator, TodosCreator).addArgument(new Reference(DI_TYPES.TodoRepository));
-    this.container.register(DI_TYPES.TodoRepository, InMemoryTodoRepository).shared = false;
+    this.container.register(DI_TYPES.TodoRepository, TypeOrmTodoRepository).addArgument(new Reference(DI_TYPES.Config));
   }
 
   getService(token: DI_TYPES): any {

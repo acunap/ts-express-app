@@ -1,12 +1,43 @@
 services:
   api:
-    container_name: ts-express-app-dev
+    container_name: ts-express-app-api
     build:
       target: development-run-stage
     ports:
       - 3000:3000
     environment:
       APP_PORT: 3000
+      DATABASE_HOST: database
+      DATABASE_PORT: 5432
+      DATABASE_USER: dev-user
+      DATABASE_PASSWORD: dev-user
+      DATABASE_DB: dev-ts-app
     volumes:
       - .:/app
       - /app/node_modules
+    depends_on:
+      database-migrations:
+        condition: service_completed_successfully
+
+  database-migrations:
+    container_name: ts-express-app-migrations
+    build:
+      target: apply-migrations-stage
+    environment:
+      APP_PORT: 3000
+      DATABASE_HOST: database
+      DATABASE_PORT: 5432
+      DATABASE_USER: dev-user
+      DATABASE_PASSWORD: dev-user
+      DATABASE_DB: dev-ts-app
+    depends_on:
+      - database
+
+  database:
+    container_name: ts-express-app-database
+    environment:
+      POSTGRES_DB: dev-ts-app
+      POSTGRES_USER: dev-user
+      POSTGRES_PASSWORD: dev-user
+    ports:
+      - 5432:5432

@@ -8,9 +8,9 @@ services:
       APP_PORT: 3000
       DATABASE_HOST: database
       DATABASE_PORT: 5432
-      DATABASE_USER: test.json-user
-      DATABASE_PASSWORD: test.json-user
-      DATABASE_DB: test.json-ts-app
+      DATABASE_USER: test-user
+      DATABASE_PASSWORD: test-user
+      DATABASE_DB: test-ts-app
     depends_on:
       database-migrations:
         condition: service_completed_successfully
@@ -24,9 +24,9 @@ services:
       APP_PORT: 3000
       DATABASE_HOST: database
       DATABASE_PORT: 5432
-      DATABASE_USER: test.json-user
-      DATABASE_PASSWORD: test.json-user
-      DATABASE_DB: test.json-ts-app
+      DATABASE_USER: test-user
+      DATABASE_PASSWORD: test-user
+      DATABASE_DB: test-ts-app
     depends_on:
       database-migrations:
         condition: service_completed_successfully
@@ -40,9 +40,9 @@ services:
       APP_PORT: 3000
       DATABASE_HOST: database
       DATABASE_PORT: 5432
-      DATABASE_USER: test.json-user
-      DATABASE_PASSWORD: test.json-user
-      DATABASE_DB: test.json-ts-app
+      DATABASE_USER: test-user
+      DATABASE_PASSWORD: test-user
+      DATABASE_DB: test-ts-app
     ports:
       - 8080:8080
     depends_on:
@@ -52,22 +52,23 @@ services:
   database-migrations:
     container_name: ts-express-app-migrations
     build:
+      context: .
       target: apply-migrations-stage
     environment:
       APP_PORT: 3000
       DATABASE_HOST: database
       DATABASE_PORT: 5432
-      DATABASE_USER: test.json-user
-      DATABASE_PASSWORD: test.json-user
-      DATABASE_DB: test.json-ts-app
+      DATABASE_USER: test-user
+      DATABASE_PASSWORD: test-user
+      DATABASE_DB: test-ts-app
     depends_on:
       - database
 
   database:
     container_name: ts-express-app-database-tests
     environment:
-      POSTGRES_DB: test.json-ts-app
-      POSTGRES_USER: test.json-user
-      POSTGRES_PASSWORD: test.json-user
+      POSTGRES_DB: test-ts-app
+      POSTGRES_USER: test-user
+      POSTGRES_PASSWORD: test-user
     ports:
       - 5432:5432

@@ -1,0 +1,29 @@
+name: Run tests
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: isbang/compose-action@v1.3.2
+        with:
+          compose-file: |
+            docker-compose.yml
+            docker-compose.test.yml
+          services: |
+            api-unit-tests
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: isbang/compose-action@v1.3.2
+        with:
+          compose-file: |
+            docker-compose.yml
+            docker-compose.test.yml
+          services: |
+            api-e2e-tests

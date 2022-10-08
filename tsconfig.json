@@ -12,6 +12,8 @@
       "@backend/*": ["src/apps/backend/*"],
       "@tests/*": ["tests/*"],
       "@todos/*": ["src/contexts/todos/*"],
+      "@errors/*": ["src/contexts/shared/domain/errors/*"],
+      "@value-objects/*": ["src/contexts/shared/domain/value-objects/*", "src/contexts/todos/domain/value-objects/*"]
     }
   }
 }

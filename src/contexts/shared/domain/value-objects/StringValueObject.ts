@@ -1,3 +1,3 @@
-import { ValueObject } from './ValueObject';
+import { ValueObject } from '@value-objects/ValueObject';
 
 export class StringValueObject extends ValueObject<string> {}

@@ -1,4 +1,4 @@
-import { InvalidArgumentError } from '../errors/InvalidArgumentError';
+import { InvalidArgumentError } from '@errors/InvalidArgumentError';
 
 export type ValueObjectType = string;
 

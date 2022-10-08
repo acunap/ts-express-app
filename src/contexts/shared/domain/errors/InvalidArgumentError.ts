@@ -1,4 +1,4 @@
-import { ResponseError } from './ResponseError';
+import { ResponseError } from '@errors/ResponseError';
 
 export class InvalidArgumentError extends ResponseError {
   constructor(readonly message: string) {

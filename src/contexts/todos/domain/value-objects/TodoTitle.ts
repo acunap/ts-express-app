@@ -1,5 +1,5 @@
-import { InvalidArgumentError } from '../../shared/domain/errors/InvalidArgumentError';
-import { StringValueObject } from '../../shared/domain/value-objects/StringValueObject';
+import { InvalidArgumentError } from '@errors/InvalidArgumentError';
+import { StringValueObject } from '@value-objects/StringValueObject';
 
 export class TodoTitle extends StringValueObject {
   constructor(value: string) {

@@ -1,4 +1,4 @@
-import { ResponseError } from './ResponseError';
+import { ResponseError } from '@errors/ResponseError';
 
 export class NotFoundError extends ResponseError {
   constructor(readonly message: string) {

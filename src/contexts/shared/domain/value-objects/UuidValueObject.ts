@@ -1,6 +1,6 @@
 import { validate } from 'uuid';
-import { InvalidArgumentError } from '../errors/InvalidArgumentError';
-import { ValueObject } from './ValueObject';
+import { InvalidArgumentError } from '@errors/InvalidArgumentError';
+import { ValueObject } from '@value-objects/ValueObject';
 
 export class UuidValueObject extends ValueObject<string> {
   constructor(value: string) {

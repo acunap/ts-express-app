@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { Controller } from '@backend/controllers/Controller';
 import { TodosCreator } from '@todos/application/TodosCreator';
-import { TodoId } from '@todos/domain/TodoId';
-import { TodoTitle } from '@todos/domain/TodoTitle';
-import { TodoDescription } from '@todos/domain/TodoDescription';
+import { TodoId } from '@todos/domain/value-objects/TodoId';
+import { TodoTitle } from '@todos/domain/value-objects/TodoTitle';
+import { TodoDescription } from '@todos/domain/value-objects/TodoDescription';
 import { Todo } from '@todos/domain/Todo';
 
 export class TodosPutController implements Controller {

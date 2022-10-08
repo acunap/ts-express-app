@@ -1,7 +1,7 @@
 import * as http from 'http';
 import express, { Express, json, NextFunction, Request, Response } from 'express';
-import { ResponseError } from '../../contexts/shared/errors/ResponseError';
-import { NotFoundError } from '../../contexts/shared/errors/NotFoundError';
+import { ResponseError } from '@errors/ResponseError';
+import { NotFoundError } from '@errors/NotFoundError';
 import { Config } from '@backend/config/Config';
 import Logger from '@backend/logger/Logger';
 import { Route } from '@backend/routes/Route';

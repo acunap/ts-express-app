@@ -11,7 +11,7 @@
     "paths": {
       "@backend/*": ["src/apps/backend/*"],
       "@tests/*": ["tests/*"],
-      "@todos/*": ["src/contexts/todos/*"]
+      "@todos/*": ["src/contexts/todos/*"],
     }
   }
 }

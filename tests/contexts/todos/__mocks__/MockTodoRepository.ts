@@ -5,11 +5,11 @@ export class MockTodoRepository implements TodoRepository {
   private readonly saveMock = jest.fn();
   private readonly searchAllMock = jest.fn();
 
-  save(todo: Todo): void {
+  async save(todo: Todo): Promise<void> {
     this.saveMock(todo);
   }
 
-  searchAll(): Todo[] {
+  async searchAll(): Promise<Todo[]> {
     return this.searchAllMock();
   }
 

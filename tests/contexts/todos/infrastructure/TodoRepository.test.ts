@@ -5,11 +5,11 @@ import { DI_TYPES } from '@backend/dependency-injection/DIContainer';
 import { Todo } from '@todos/domain/Todo';
 
 describe('TodoRepository', () => {
-  it('should save a todo', () => {
+  it('should save a todo', async () => {
     const repository: TodoRepository = container.getService(DI_TYPES.TodoRepository);
     const todo = TodoMother.create();
 
-    repository.save(todo);
+    await repository.save(todo);
 
     const persistedTodos = repository.searchAll();
 
@@ -17,13 +17,13 @@ describe('TodoRepository', () => {
     expect(persistedTodos).toEqual([todo]);
   });
 
-  it('should return all todos persisted', () => {
+  it('should return all todos persisted', async () => {
     const repository: TodoRepository = container.getService(DI_TYPES.TodoRepository);
     const todos = [TodoMother.create(), TodoMother.create(), TodoMother.create()];
 
-    todos.forEach((todo) => repository.save(todo));
+    await Promise.all(todos.map(async (todo) => await repository.save(todo)));
 
-    const persistedCourses = repository.searchAll();
+    const persistedCourses = await repository.searchAll();
 
     expect(persistedCourses).toHaveLength(todos.length);
     expect(persistedCourses.sort(sort)).toEqual(todos.sort(sort));

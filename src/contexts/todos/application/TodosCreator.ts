@@ -4,7 +4,7 @@ import { TodoRepository } from '@todos/domain/TodoRepository';
 export class TodosCreator {
   constructor(private readonly repository: TodoRepository) {}
 
-  create(todo: Todo): void {
-    this.repository.save(todo);
+  async create(todo: Todo): Promise<void> {
+    await this.repository.save(todo);
   }
 }

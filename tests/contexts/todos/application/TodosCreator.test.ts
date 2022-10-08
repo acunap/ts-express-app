@@ -3,12 +3,12 @@ import { TodoMother } from '../domain/TodoMother';
 import { TodosCreator } from '@todos/application/TodosCreator';
 
 describe('TodoCreator', () => {
-  it('should use repository to save the new Todo', () => {
+  it('should use repository to save the new Todo', async () => {
     const repository = new MockTodoRepository();
     const creator = new TodosCreator(repository);
     const todo = TodoMother.create();
 
-    creator.create(todo);
+    await creator.create(todo);
 
     repository.assertHasBeenCalledWith(todo);
   });

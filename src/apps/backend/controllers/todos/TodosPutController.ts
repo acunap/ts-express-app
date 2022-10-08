@@ -10,11 +10,12 @@ export class TodosPutController implements Controller {
   constructor(private readonly creator: TodosCreator) {}
 
   async run(req: Request, res: Response): Promise<void> {
-    const { id, title, description } = req.body;
+    const id = req.params.id;
+    const { title, description } = req.body;
     const todo = new Todo(new TodoId(id), new TodoTitle(title), new TodoDescription(description));
 
     await this.creator.create(todo);
 
-    res.status(201).json();
+    res.status(201).json({});
   }
 }

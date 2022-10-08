@@ -13,10 +13,9 @@ Feature: Create a new todo
     And the response body should be empty
 
   Scenario: Invalid new todo because of not valid id
-    Given I send a put request to "/todos/0df51900-a2a1-4327-8f7b-5f09b8717c34" with body:
+    Given I send a put request to "/todos/0" with body:
     """
     {
-      "id": "",
       "title": "test title",
       "description": "test description"
     }
@@ -33,7 +32,6 @@ Feature: Create a new todo
     Given I send a put request to "/todos/0df51900-a2a1-4327-8f7b-5f09b8717c34" with body:
     """
     {
-      "id": "0df51900-a2a1-4327-8f7b-5f09b8717c34",
       "title": "",
       "description": "test description"
     }
@@ -50,7 +48,6 @@ Feature: Create a new todo
     Given I send a put request to "/todos/0df51900-a2a1-4327-8f7b-5f09b8717c34" with body:
     """
     {
-      "id": "0df51900-a2a1-4327-8f7b-5f09b8717c34",
       "title": "test title",
       "description": ""
     }

@@ -1,7 +1,9 @@
-import { InvalidArgumentError } from '../../shared/errors/InvalidArgumentError';
+import { InvalidArgumentError } from '../../shared/domain/errors/InvalidArgumentError';
+import { StringValueObject } from '../../shared/domain/value-objects/StringValueObject';
 
-export class TodoTitle {
-  constructor(readonly value: string) {
+export class TodoTitle extends StringValueObject {
+  constructor(value: string) {
+    super(value);
     this.ensureTitleIsNotEmpty();
   }
 

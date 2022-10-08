@@ -5,18 +5,25 @@ COPY package*.json ./
 RUN npm ci
 COPY . .
 
+FROM common-build-stage as apply-migrations-stage
+CMD ["npm", "run", "typeorm:migration:apply"]
+
 FROM common-build-stage as development-run-stage
 
 ENV NODE_ENV development
 CMD ["npm", "run", "dev"]
 
+FROM common-build-stage as unit-tests-run-stage
+
+CMD ["npm", "run", "test:unit"]
+
 FROM common-build-stage as e2e-tests-run-stage
 
-CMD ["npm", "run", "test:features"]
+CMD ["npm", "run", "test:e2e"]
 
 FROM common-build-stage as e2e-tests-run-and-serve-stage
 
-CMD ["npm", "run", "test:features:report:serve"]
+CMD ["npm", "run", "test:e2e:report:serve"]
 
 FROM common-build-stage as production-build-stage
 

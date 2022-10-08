@@ -6,6 +6,11 @@ import { Server } from '@backend/server';
 import { StatusRoutes } from '@backend/routes/status/StatusRoutes';
 import { StatusGetRoute } from '@backend/routes/status/StatusGetRoute';
 import { StatusGetController } from '@backend/controllers/status/StatusGetController';
+import { TodosRoutes } from '@backend/routes/todos/TodosRoutes';
+import { TodosPutRoute } from '@backend/routes/todos/TodosPutRoute';
+import { TodosPutController } from '@backend/controllers/todos/TodosPutController';
+import { TodosCreator } from '@todos/application/TodosCreator';
+import { TypeOrmTodoRepository } from '@todos/infrastructure/persistence/TypeOrmTodoRepository';
 
 export class NodeDependencyInjectionDIContainer implements DIContainer {
   private readonly container: ContainerBuilder;
@@ -17,7 +22,8 @@ export class NodeDependencyInjectionDIContainer implements DIContainer {
       .register(DI_TYPES.Server, Server)
       .addArgument(new Reference(DI_TYPES.Config))
       .addArgument(new Reference(DI_TYPES.Logger))
-      .addArgument(new Reference(DI_TYPES.StatusRoute));
+      .addArgument(new Reference(DI_TYPES.StatusRoute))
+      .addArgument(new Reference(DI_TYPES.TodosRoute));
 
     this.container.register(DI_TYPES.Config, ConvictConfig);
     this.container.register(DI_TYPES.Logger, PinoLogger).addArgument(new Reference(DI_TYPES.Config));
@@ -25,6 +31,12 @@ export class NodeDependencyInjectionDIContainer implements DIContainer {
     this.container.register(DI_TYPES.StatusRoute, StatusRoutes).addArgument(new Reference(DI_TYPES.StatusGetRoute));
     this.container.register(DI_TYPES.StatusGetRoute, StatusGetRoute).addArgument(new Reference(DI_TYPES.StatusGetController));
     this.container.register(DI_TYPES.StatusGetController, StatusGetController);
+
+    this.container.register(DI_TYPES.TodosRoute, TodosRoutes).addArgument(new Reference(DI_TYPES.TodosPutRoute));
+    this.container.register(DI_TYPES.TodosPutRoute, TodosPutRoute).addArgument(new Reference(DI_TYPES.TodosPutController));
+    this.container.register(DI_TYPES.TodosPutController, TodosPutController).addArgument(new Reference(DI_TYPES.TodoCreator));
+    this.container.register(DI_TYPES.TodoCreator, TodosCreator).addArgument(new Reference(DI_TYPES.TodoRepository));
+    this.container.register(DI_TYPES.TodoRepository, TypeOrmTodoRepository).addArgument(new Reference(DI_TYPES.Config));
   }
 
   getService(token: DI_TYPES): any {

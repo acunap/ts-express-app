@@ -9,4 +9,9 @@ export enum DI_TYPES {
   StatusRoute = 'Routes.StatusRoute',
   StatusGetRoute = 'Routes.StatusGetRoute',
   StatusGetController = 'Controllers.StatusGetController',
+  TodosRoute = 'Routes.TodosRoute',
+  TodosPutRoute = 'Routes.TodosPutRoute',
+  TodosPutController = 'Controllers.TodosPutController',
+  TodoCreator = 'UseCases.TodoCreator',
+  TodoRepository = 'Repositories.TodoRepository',
 }
